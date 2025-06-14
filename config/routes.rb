@@ -15,4 +15,9 @@ Rails.application.routes.draw do
   root 'products#index'
 
   resources :products, only: [:index]
+
+  resource :basket, only: [:show] do
+    post :add_item, defaults: { format: :json }
+    delete :remove_item, defaults: { format: :json }
+  end
 end
