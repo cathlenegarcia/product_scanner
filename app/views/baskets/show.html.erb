@@ -1,0 +1,48 @@
+<div class="container mx-auto px-4 py-8" data-controller="basket">
+  <h1 class="text-3xl font-bold mb-8">Your Basket</h1>
+
+  <% if @basket.basket_items.any? %>
+    <div class="space-y-4">
+      <% @basket.basket_items.each do |item| %>
+        <div class="flex items-center justify-between border-b pb-4">
+          <div>
+            <h3 class="font-semibold"><%= item.product.name %></h3>
+            <p class="text-gray-600">Code: <%= item.product.product_code %></p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2">
+              <button 
+                data-basket-target="removeButton"
+                data-action="click->basket#handleRemove"
+                class="remove-from-basket text-red-500 hover:text-red-700"
+                data-product-id="<%= item.product.id %>"
+                data-url="<%= remove_item_basket_path %>">
+                -
+              </button>
+              <span class="quantity"><%= item.quantity %></span>
+              <button 
+                data-basket-target="addButton"
+                data-action="click->basket#handleAdd"
+                class="add-to-basket text-green-500 hover:text-green-700"
+                data-product-id="<%= item.product.id %>"
+                data-url="<%= add_item_basket_path %>">
+                +
+              </button>
+            </div>
+            <p class="font-semibold"><%= (item.product.price * item.quantity).format %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="mt-8 text-right">
+        <p class="text-xl font-bold">Total with Discount: <%= @basket.total_price.format %></p>
+      </div>
+    </div>
+  <% else %>
+    <p class="text-gray-600">Your basket is empty.</p>
+  <% end %>
+
+  <div class="mt-8">
+    <a href="<%= products_path %>" class="text-blue-500 hover:underline">Continue Shopping</a>
+  </div>
+</div>

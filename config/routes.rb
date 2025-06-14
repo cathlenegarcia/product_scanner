@@ -11,4 +11,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  root 'products#index'
+
+  resources :products, only: [:index]
+
+  resource :basket, only: [:show] do
+    post :add_item, defaults: { format: :json }
+    delete :remove_item, defaults: { format: :json }
+  end
 end
