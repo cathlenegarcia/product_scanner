@@ -1,24 +1,49 @@
-# README
+# Product Scanner
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails application for scanning and managing product information.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+* Ruby version: See `.ruby-version` file
+* Rails 8.0.0
+* PostgreSQL
+* Docker (optional, for containerized deployment)
 
-* System dependencies
+## System Dependencies
 
-* Configuration
+* PostgreSQL database
+* Node.js (for asset compilation)
+* Yarn (for JavaScript dependencies)
 
-* Database creation
+## Configuration
 
-* Database initialization
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   bundle install
+   ```
+3. Set up the database:
+   ```bash
+   rails db:create db:migrate
+   ```
+4. Configure environment variables (if any)
 
-* How to run the test suite
+## Development Setup
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Start the Rails server:
+   ```bash
+   rails server
+   ```
+2. Visit `http://localhost:3000`
 
-* Deployment instructions
+## Testing
 
-* ...
+The application uses RSpec for testing. Run the test suite with:
+
+```bash
+bundle exec rspec
+```
+
+## Key Features
+
+* Product scanning and management
